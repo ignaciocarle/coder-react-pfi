@@ -3,7 +3,7 @@ import React from "react";
 import logo from "../assets/pda-logo-small.png";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
-const Header = () => {
+const NavBar = () => {
   return (
     <header style={styles.header}>
       <div style={styles.brand}>
@@ -37,7 +37,8 @@ const styles = {
     justifyContent: "space-between",
     alignItems: "center",
     padding: "1.5rem 3rem",
-    borderBottom: "solid 1px black",
+    borderBottom: "solid 2px",
+    color: "var(--primary-1000)",
   },
   brand: {
     display: "flex",
@@ -54,4 +55,4 @@ const styles = {
   },
 };
 
-export default Header;
+export default NavBar;
