@@ -1,31 +1,27 @@
 import React from "react";
 
-import logo from "../assets/pda-logo-small.png";
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import logo from "../../assets/pda-logo-small.png";
+
+import CartWidget from "./CartWidget";
+import NavLinks from "./NavLinks";
+
+const categories = [
+  { id: 0, name: "Home" },
+  { id: 1, name: "Productos" },
+  { id: 2, name: "Nosotros" },
+];
 
 const NavBar = () => {
   return (
     <header style={styles.header}>
-      <div style={styles.brand}>
+      <a href="" style={styles.brand}>
         <img src={logo} alt="logo" style={styles.logo} />
         <h1>Punto de Apoyo</h1>
-      </div>
-
-      <nav>
-        <a href="" style={styles.links}>
-          Home
-        </a>
-        <a href="" style={styles.links}>
-          Productos
-        </a>
-        <a href="" style={styles.links}>
-          Nosotros
-        </a>
-      </nav>
-
-      <a href="">
-        <ShoppingCartOutlinedIcon fontSize="large" />
       </a>
+
+      <NavLinks categories={categories} />
+
+      <CartWidget />
     </header>
   );
 };
@@ -38,7 +34,6 @@ const styles = {
     alignItems: "center",
     padding: "1.5rem 3rem",
     borderBottom: "solid 2px",
-    color: "var(--primary-1000)",
   },
   brand: {
     display: "flex",
@@ -49,9 +44,6 @@ const styles = {
   logo: {
     width: 60,
     height: 60,
-  },
-  links: {
-    padding: "0 0.5rem",
   },
 };
 
