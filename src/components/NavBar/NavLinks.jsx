@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavLinks = ({ categories }) => {
+function NavLinks({ categories }) {
   return (
     <nav style={styles.nav}>
       {categories.map((item) => {
@@ -12,7 +12,7 @@ const NavLinks = ({ categories }) => {
       })}
     </nav>
   );
-};
+}
 
 const styles = {
   nav: {

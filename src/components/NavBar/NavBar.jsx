@@ -1,17 +1,15 @@
 import React from "react";
-
 import logo from "../../assets/pda-logo-small.png";
-
-import CartWidget from "./CartWidget";
 import NavLinks from "./NavLinks";
+import CartWidget from "./CartWidget";
 
-const categories = [
-  { id: 0, name: "Home" },
-  { id: 1, name: "Productos" },
-  { id: 2, name: "Nosotros" },
-];
+function NavBar() {
+  const categories = [
+    { id: 0, name: "Home" },
+    { id: 1, name: "Productos" },
+    { id: 2, name: "Nosotros" },
+  ];
 
-const NavBar = () => {
   return (
     <header style={styles.header}>
       <a href="" style={styles.brand}>
@@ -24,7 +22,7 @@ const NavBar = () => {
       <CartWidget />
     </header>
   );
-};
+}
 
 const styles = {
   header: {
