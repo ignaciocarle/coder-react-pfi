@@ -4,21 +4,13 @@ import NavLinks from "./NavLinks";
 import CartWidget from "./CartWidget";
 
 function NavBar() {
-  const categories = [
-    { id: 0, name: "Home" },
-    { id: 1, name: "Productos" },
-    { id: 2, name: "Nosotros" },
-  ];
-
   return (
     <header style={styles.header}>
-      <a href="" style={styles.brand}>
+      <a href="/" style={styles.brand}>
         <img src={logo} alt="logo" style={styles.logo} />
         <h1>Punto de Apoyo</h1>
       </a>
-
-      <NavLinks categories={categories} />
-
+      <NavLinks />
       <CartWidget />
     </header>
   );

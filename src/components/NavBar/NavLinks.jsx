@@ -1,15 +1,17 @@
 import React from "react";
 
-function NavLinks({ categories }) {
+function NavLinks() {
   return (
     <nav style={styles.nav}>
-      {categories.map((item) => {
-        return (
-          <a href="" key={item.id} style={styles.links}>
-            <h4>{item.name}</h4>
-          </a>
-        );
-      })}
+      <a href="/" style={styles.links}>
+        <h4>Home</h4>
+      </a>
+      <a href="/" style={styles.links}>
+        <h4>Productos</h4>
+      </a>
+      <a href="/" style={styles.links}>
+        <h4>Nosotros</h4>
+      </a>
     </nav>
   );
 }

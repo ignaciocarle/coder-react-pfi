@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "./components/NavBar/NavBar";
-import ItemListContainer from "./components/ItemListContainer";
+import ItemListContainer from "./components/ItemList/ItemListContainer";
 function App() {
   const msg = "Bienvenidos a la tienda online de Punto de Apoyo";
 
