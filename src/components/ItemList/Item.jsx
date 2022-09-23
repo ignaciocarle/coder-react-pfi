@@ -1,5 +1,4 @@
 import React from "react";
-import Spacer from "../UI/Spacer";
 
 function Item({ product }) {
   const { title, price, pictureUrl } = product;

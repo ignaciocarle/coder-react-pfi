@@ -13,7 +13,7 @@ function App() {
       <main style={styles.main}>
         <ItemListContainer greeting={msg} />
         <Spacer />
-        <ItemDetailContainer />
+        <ItemDetailContainer productId={1} />
       </main>
     </>
   );
@@ -26,10 +26,6 @@ const styles = {
     justifyContent: "start",
     alignItems: "center",
     padding: "1.5rem 3rem 0",
-  },
-  spacer: {
-    //SACAR ESTO CUANDO LLEVE LOS ITEMDETAIL A SU PROPIA PAG
-    marginTop: "3rem",
   },
 };
 

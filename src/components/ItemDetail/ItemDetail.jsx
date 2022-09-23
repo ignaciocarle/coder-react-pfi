@@ -1,10 +1,10 @@
 import React from "react";
 
 function ItemDetail({ product }) {
-  const { id, title, description, price, pictureUrl } = product;
+  const { title, description, price, pictureUrl } = product;
 
   return (
-    <article style={{ ...s.article, ...s.testBorder }}>
+    <article style={s.article}>
       <img style={s.img} src={pictureUrl} alt={title} />
       <div style={s.details}>
         <h1>{title}</h1>
@@ -24,7 +24,7 @@ const s = {
     justifyContent: "space-around",
     alignItems: "start",
     rowGap: "2rem",
-    //height: "320px",
+    border: "dashed 1px var(--primary-700)",
   },
   img: {
     minWidth: "40%",
@@ -36,9 +36,6 @@ const s = {
     flexFlow: "column",
     justifyContent: "start",
     rowGap: "1rem",
-  },
-  testBorder: {
-    border: "dashed 1px var(--primary-700)",
   },
 };
 
