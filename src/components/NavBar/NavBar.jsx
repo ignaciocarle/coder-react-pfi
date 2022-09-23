@@ -5,9 +5,9 @@ import CartWidget from "./CartWidget";
 
 function NavBar() {
   return (
-    <header style={styles.header}>
-      <a href="/" style={styles.brand}>
-        <img src={logo} alt="logo" style={styles.logo} />
+    <header style={s.header}>
+      <a href="/" style={s.brand}>
+        <img src={logo} alt="logo" style={s.logo} />
         <h1>Punto de Apoyo</h1>
       </a>
       <NavLinks />
@@ -16,7 +16,7 @@ function NavBar() {
   );
 }
 
-const styles = {
+const s = {
   header: {
     display: "flex",
     flexDirection: "row",

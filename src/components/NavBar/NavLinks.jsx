@@ -2,21 +2,21 @@ import React from "react";
 
 function NavLinks() {
   return (
-    <nav style={styles.nav}>
-      <a href="/" style={styles.links}>
+    <nav style={s.nav}>
+      <a href="/" style={s.links}>
         <h4>Home</h4>
       </a>
-      <a href="/" style={styles.links}>
+      <a href="/" style={s.links}>
         <h4>Productos</h4>
       </a>
-      <a href="/" style={styles.links}>
+      <a href="/" style={s.links}>
         <h4>Nosotros</h4>
       </a>
     </nav>
   );
 }
 
-const styles = {
+const s = {
   nav: {
     display: "flex",
     gap: "1rem",

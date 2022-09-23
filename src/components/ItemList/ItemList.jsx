@@ -3,7 +3,7 @@ import Item from "./Item";
 
 function ItemList({ productList }) {
   return (
-    <section style={styles.section}>
+    <section style={s.section}>
       {productList.map((product) => (
         <Item product={product} key={product.id} />
       ))}
@@ -11,15 +11,15 @@ function ItemList({ productList }) {
   );
 }
 
-const styles = {
+const s = {
   section: {
+    padding: "1.5rem 10% 0",
+    width: "100%",
     display: "flex",
     flexFlow: "row wrap",
     justifyContent: "start",
     columnGap: "5% ",
     rowGap: "2rem",
-    width: "100%",
-    padding: "1.5rem 10% 0",
   },
 };
 

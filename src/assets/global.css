@@ -11,10 +11,16 @@
 
 * {
   margin: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 HTML {
+  box-sizing: border-box;
   background: var(--light-bg);
 }
 

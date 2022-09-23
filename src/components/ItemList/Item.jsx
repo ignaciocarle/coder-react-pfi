@@ -1,28 +1,31 @@
 import React from "react";
 
 function Item({ product }) {
+  const { title, price, pictureUrl } = product;
+
   return (
-    <article style={styles.article}>
-      <img style={styles.img} src={product.pictureUrl} alt={product.title} />
-      <h3 style={styles.title}>{product.title}</h3>
-      <h3 style={styles.price}>$ {product.price}</h3>
+    <article style={s.article}>
+      <img style={s.img} src={pictureUrl} alt={title} />
+      <h3 style={s.title}>{title}</h3>
+      <h3 style={s.price}>$ {price}</h3>
     </article>
   );
 }
 
-const styles = {
+const s = {
   article: {
     display: "flex",
-    flexFlow: "column",
+    flexDirection: "column",
     justifyContent: "start",
     alignItems: "center",
     width: "30%",
     height: "320px",
     padding: "1.5rem",
     border: "solid 1px var(--primary-700)",
+    borderRadius: "1rem",
   },
   img: {
-    height: "200px",
+    maxWidth: "100%",
   },
   title: {
     textAlign: "center",
