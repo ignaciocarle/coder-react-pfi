@@ -1,4 +1,5 @@
 import React from "react";
+import Spacer from "../UI/Spacer";
 
 function Item({ product }) {
   const { title, price, pictureUrl } = product;
@@ -14,13 +15,14 @@ function Item({ product }) {
 
 const s = {
   article: {
+    padding: "1.5rem",
+    width: "30%",
+    minHeight: "fit-content",
     display: "flex",
     flexDirection: "column",
     justifyContent: "start",
     alignItems: "center",
-    width: "30%",
-    height: "320px",
-    padding: "1.5rem",
+    rowGap: "1rem",
     border: "solid 1px var(--primary-700)",
     borderRadius: "1rem",
   },
