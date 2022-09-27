@@ -3,7 +3,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 function CartWidget() {
   return (
-    <a href="">
+    <a href="/">
       <ShoppingCartOutlinedIcon fontSize="large" />
     </a>
   );

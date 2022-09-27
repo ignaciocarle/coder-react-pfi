@@ -17,9 +17,9 @@ const s = {
     width: "100%",
     display: "flex",
     flexFlow: "row wrap",
-    justifyContent: "start",
-    columnGap: "5% ",
-    rowGap: "2rem",
+    justifyContent: "center",
+    columnGap: "3rem",
+    rowGap: "3rem",
   },
 };
 

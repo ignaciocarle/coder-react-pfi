@@ -1,11 +1,11 @@
 import React from "react";
 
 function ItemDetail({ product }) {
-  const { title, description, price, pictureUrl } = product;
+  const { title, description, price, image } = product;
 
   return (
     <article style={s.article}>
-      <img style={s.img} src={pictureUrl} alt={title} />
+      <img style={s.img} src={image} alt={title} />
       <div style={s.details}>
         <h1>{title}</h1>
         <h3>$ {price}</h3>
@@ -21,14 +21,15 @@ const s = {
     height: "fit-content",
     display: "flex",
     flexFlow: "row wrap",
-    justifyContent: "space-around",
+    justifyContent: "center",
     alignItems: "start",
-    rowGap: "2rem",
+    columnGap: "3rem",
     border: "dashed 1px var(--primary-700)",
   },
   img: {
-    minWidth: "40%",
-    maxWidth: "650px",
+    width: "450px",
+    height: "450px",
+    objectFit: "contain",
   },
   details: {
     paddingTop: "1.5rem",
