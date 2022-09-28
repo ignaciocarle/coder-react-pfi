@@ -22,12 +22,14 @@ function ItemCount({ stock, initial, onAdd }) {
 
   return (
     <>
-      <h1>{count}</h1>
       <div>
-        <button onClick={countSubs}>-</button>
-        <button onClick={countAdd}>+</button>
+        <h1>{count}</h1>
+        <div>
+          <button onClick={countSubs}>-</button>
+          <button onClick={countAdd}>+</button>
+        </div>
+        <button onClick={onAddHandler}>Comprar</button>
       </div>
-      <button onClick={onAddHandler}>Comprar</button>
     </>
   );
 }

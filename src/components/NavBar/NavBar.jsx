@@ -1,16 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { getAllCategories } from "../services/productsService";
+
 import logo from "../../assets/pda-logo-small.png";
 import NavLinks from "./NavLinks";
 import CartWidget from "./CartWidget";
 
 function NavBar() {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    getAllCategories().then((data) => {
+      setCategories(data);
+    });
+  }, []);
+
   return (
     <header style={s.header}>
-      <a href="/" style={s.brand}>
+      <Link to="/" style={s.brand}>
         <img src={logo} alt="logo" style={s.logo} />
         <h1>Punto de Apoyo</h1>
-      </a>
-      <NavLinks />
+      </Link>
+      <NavLinks categories={categories} />
       <CartWidget />
     </header>
   );
@@ -19,7 +31,7 @@ function NavBar() {
 const s = {
   header: {
     display: "flex",
-    flexDirection: "row",
+    flexFlow: "row wrap",
     justifyContent: "space-between",
     alignItems: "center",
     padding: "1.5rem 3rem",
@@ -27,7 +39,7 @@ const s = {
   },
   brand: {
     display: "flex",
-    flexDirection: "row",
+    flexFlow: "row",
     alignItems: "center",
     gap: "1rem",
   },

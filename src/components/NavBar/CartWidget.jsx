@@ -1,11 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 function CartWidget() {
   return (
-    <a href="/">
+    <Link to="/cart">
       <ShoppingCartOutlinedIcon fontSize="large" />
-    </a>
+    </Link>
   );
 }
 

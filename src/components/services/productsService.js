@@ -56,12 +56,17 @@ export const getItem = (id) => {
 
 const PATH = "https://fakestoreapi.com";
 
-export const getAllProducts = (limit = undefined) => {
-  const URL = PATH + `/products${limit ? "?limit=" + limit : ""}`;
+export const getAllProducts = (category) => {
+  const URL = PATH + `/products${category ? "/category/" + category : ""}`;
   return fetch(URL).then((res) => res.json());
 };
 
 export const getItem = (id) => {
   const URL = PATH + `/products/${id}`;
+  return fetch(URL).then((res) => res.json());
+};
+
+export const getAllCategories = () => {
+  const URL = PATH + `/products/categories`;
   return fetch(URL).then((res) => res.json());
 };

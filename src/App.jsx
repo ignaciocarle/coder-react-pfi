@@ -1,20 +1,35 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import NavBar from "./components/NavBar/NavBar";
 import ItemListContainer from "./components/ItemList/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetail/ItemDetailContainer";
-import Spacer from "./components/UI/Spacer";
+import Cart from "./components/Cart/Cart";
 
 function App() {
   const msg = "Bienvenidos a la tienda online de Punto de Apoyo";
 
   return (
     <>
-      <NavBar />
-      <main style={styles.main}>
-        <ItemListContainer greeting={msg} />
-        <Spacer />
-        <ItemDetailContainer productId={1} />
-      </main>
+      <BrowserRouter>
+        <NavBar />
+        <main style={styles.main}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <>
+                  <h3>{msg}</h3>
+                  <ItemListContainer />
+                </>
+              }
+            />
+            <Route path="/category/:id" element={<ItemListContainer />} />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
     </>
   );
 }

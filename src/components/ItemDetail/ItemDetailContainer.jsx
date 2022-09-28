@@ -1,19 +1,29 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import { getItem } from "../services/productsService";
 import ItemDetail from "./ItemDetail";
+import CircularProgress from "@mui/joy/CircularProgress";
 
-function ItemDetailContainer({ productId }) {
+function ItemDetailContainer() {
+  let { id } = useParams();
   const [productInfo, setProductInfo] = useState("");
 
   useEffect(() => {
-    getItem(productId).then((data) => {
+    getItem(id).then((data) => {
       setProductInfo(data);
-      console.log("single product retrieved from productsService");
+      console.log(`"${data.title}" retrieved from productsService`);
     });
-  }, [productId]);
+  }, [id]);
 
   return (
-    <>{productInfo ? <ItemDetail product={productInfo} /> : <p>Cargando</p>}</>
+    <>
+      {productInfo ? (
+        <ItemDetail product={productInfo} />
+      ) : (
+        <CircularProgress />
+      )}
+    </>
   );
 }
 

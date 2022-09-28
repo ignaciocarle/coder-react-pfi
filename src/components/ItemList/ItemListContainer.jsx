@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { getAllProducts } from "../services/productsService";
-import ItemCount from "./ItemCount";
-import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
-function ItemListContainer({ greeting }) {
+import { getAllProducts } from "../services/productsService";
+
+import ItemList from "./ItemList";
+import Spacer from "../UI/Spacer";
+
+function ItemListContainer() {
+  const { id } = useParams();
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    getAllProducts().then((data) => {
+    getAllProducts(id).then((data) => {
       setProductList(data);
       console.log("products retrieved from productsService");
     });
-  }, []);
-
-  const onAdd = (count) => {
-    console.log(`Se agregaron ${count} items al carrito.`);
-  };
+  }, [id]);
 
   return (
     <>
-      <h3>{greeting}</h3>
-      <ItemCount stock="10" initial="1" onAdd={onAdd} />
       <ItemList productList={productList} />
+      <Spacer />
     </>
   );
 }

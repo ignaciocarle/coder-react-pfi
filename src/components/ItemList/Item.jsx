@@ -1,22 +1,27 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Item({ product }) {
   const { title, price, image } = product;
 
   return (
     <article style={s.article}>
-      <img style={s.img} src={image} alt={title} />
-      <h3 style={s.title}>{title}</h3>
-      <h3 style={s.price}>$ {price}</h3>
+      <Link style={s.container} to={"/item/" + product.id}>
+        <img style={s.img} src={image} alt={title} />
+        <h3 style={s.title}>{title}</h3>
+        <h3 style={s.price}>$ {price}</h3>
+      </Link>
     </article>
   );
 }
 
 const s = {
   article: {
-    padding: "1.5rem",
     width: "26%",
     minHeight: "fit-content",
+  },
+  container: {
+    padding: "1.5rem",
     display: "flex",
     flexFlow: "column",
     justifyContent: "start",
