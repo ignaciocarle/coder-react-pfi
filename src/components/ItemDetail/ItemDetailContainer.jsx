@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { getItem } from "../services/productsService";
+import { getItem } from "../../services/productsService";
+
 import ItemDetail from "./ItemDetail";
-import CircularProgress from "@mui/joy/CircularProgress";
 
 function ItemDetailContainer() {
   let { id } = useParams();
@@ -18,11 +18,7 @@ function ItemDetailContainer() {
 
   return (
     <>
-      {productInfo ? (
-        <ItemDetail product={productInfo} />
-      ) : (
-        <CircularProgress />
-      )}
+      {productInfo ? <ItemDetail product={productInfo} /> : <p>Loading...</p>}
     </>
   );
 }

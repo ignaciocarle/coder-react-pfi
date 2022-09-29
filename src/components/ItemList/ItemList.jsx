@@ -14,6 +14,7 @@ function ItemList({ productList }) {
 
 const s = {
   section: {
+    marginBottom: "3rem",
     padding: "1.5rem 10% 0",
     width: "100%",
     display: "flex",

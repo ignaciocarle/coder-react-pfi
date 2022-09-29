@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { getAllCategories } from "../services/productsService";
+import { getAllCategories } from "../../services/productsService";
 
 import logo from "../../assets/pda-logo-small.png";
 import NavLinks from "./NavLinks";
