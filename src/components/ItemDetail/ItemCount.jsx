@@ -16,10 +16,6 @@ function ItemCount({ stock, initial, onAdd }) {
     setCount(count - 1);
   };
 
-  const onAddHandler = () => {
-    onAdd(count);
-  };
-
   return (
     <>
       <div>
@@ -28,7 +24,7 @@ function ItemCount({ stock, initial, onAdd }) {
           <button onClick={countSubs}>-</button>
           <button onClick={countAdd}>+</button>
         </div>
-        <button onClick={onAddHandler}>Comprar</button>
+        <button onClick={() => onAdd(count)}>Comprar</button>
       </div>
     </>
   );

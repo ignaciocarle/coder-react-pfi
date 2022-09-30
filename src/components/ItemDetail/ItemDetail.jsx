@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ product }) {
   const { title, description, price, image } = product;
+  const [displayItemCount, setDisplayItemCount] = useState(true);
 
   const onAdd = (count) => {
+    setDisplayItemCount(false);
     console.log(`Added ${count} units of "${title}" to Cart.`);
   };
 
@@ -16,7 +19,13 @@ function ItemDetail({ product }) {
         <h1>{title}</h1>
         <h3>$ {price}</h3>
         <p style={s.description}>{description}</p>
-        <ItemCount stock="10" initial="1" onAdd={onAdd} />
+        {displayItemCount ? (
+          <ItemCount stock="10" initial="1" onAdd={onAdd} />
+        ) : (
+          <Link to="/cart">
+            <button>Finalizar Compra</button>
+          </Link>
+        )}
       </div>
     </article>
   );

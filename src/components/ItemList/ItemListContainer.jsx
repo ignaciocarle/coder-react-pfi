@@ -6,8 +6,8 @@ import { getAllProducts } from "../../services/productsService";
 import ItemList from "./ItemList";
 
 function ItemListContainer() {
-  const { id } = useParams();
-  const [productList, setProductList] = useState("");
+  let { id } = useParams();
+  const [productList, setProductList] = useState([]);
 
   useEffect(() => {
     getAllProducts(id).then((data) => {
@@ -18,7 +18,7 @@ function ItemListContainer() {
 
   return (
     <>
-      {productList ? (
+      {productList.length !== 0 ? (
         <ItemList productList={productList} />
       ) : (
         <p style={{ marginTop: "1.5rem" }}>Loading...</p>

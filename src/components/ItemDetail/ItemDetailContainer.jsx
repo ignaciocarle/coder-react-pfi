@@ -7,7 +7,7 @@ import ItemDetail from "./ItemDetail";
 
 function ItemDetailContainer() {
   let { id } = useParams();
-  const [productInfo, setProductInfo] = useState("");
+  const [productInfo, setProductInfo] = useState({});
 
   useEffect(() => {
     getItem(id).then((data) => {
@@ -18,7 +18,11 @@ function ItemDetailContainer() {
 
   return (
     <>
-      {productInfo ? <ItemDetail product={productInfo} /> : <p>Loading...</p>}
+      {Object.keys(productInfo).length !== 0 ? (
+        <ItemDetail product={productInfo} />
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
 }
