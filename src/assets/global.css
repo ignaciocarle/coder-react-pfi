@@ -39,5 +39,6 @@ a {
 }
 
 .active {
-  font-weight: bold;
+  border: 2px solid var(--primary-700);
+  border-radius: 0.5em;
 }
