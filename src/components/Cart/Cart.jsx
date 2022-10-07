@@ -1,42 +1,37 @@
 import React, { useContext } from "react";
+import styled from "styled-components";
 
 import { CartContext } from "../../context/CartContext";
 
-function Table() {}
+import { Button } from "../UI/Button";
+import CartDetail from "./CartDetail";
 
 function Cart() {
-  const { cart, removeItem, clearCart } = useContext(CartContext);
+  const { cart } = useContext(CartContext);
 
   return (
-    <>
-      <h1>Cart</h1>
+    <StyledCart as="section">
+      <h1>Carrito</h1>
       {cart.length !== 0 ? (
+        <CartDetail />
+      ) : (
         <>
-          <table>
-            <tr>
-              <th>Producto</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th>Acciones</th>
-            </tr>
-            {cart.map((item) => (
-              <tr key={item.id}>
-                <th>{item.title}</th>
-                <th>$ {item.price}</th>
-                <th>{item.qty}</th>
-                <th>$ {item.price * item.qty}</th>
-                <th>
-                  <button onClick={() => removeItem(item.id)}>X</button>
-                </th>
-              </tr>
-            ))}
-          </table>
-          <button onClick={clearCart}>Limpiar el Carrito</button>
+          <p>No hay productos en el carrito</p>
+          <Button to="/">Volver a la Home</Button>
         </>
-      ) : null}
-    </>
+      )}
+    </StyledCart>
   );
 }
+
+const StyledCart = styled.section`
+  width: 100%;
+  padding: 1.5rem 15%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 2rem;
+`;
 
 export default Cart;

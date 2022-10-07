@@ -1,31 +1,31 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
 function NavLinks({ categories }) {
   return (
     <>
-      <nav style={s.nav}>
+      <StyledNavLinks>
         {categories.map((category, index) => (
-          <NavLink to={"category/" + category} style={s.links} key={index}>
+          <NavLink to={"category/" + category} key={index}>
             <p>{category}</p>
           </NavLink>
         ))}
-      </nav>
+      </StyledNavLinks>
     </>
   );
 }
 
-const s = {
-  nav: {
-    flexGrow: "1",
-    display: "flex",
-    flexFlow: "row wrap",
-    justifyContent: "center",
-    gap: "0.5rem",
-  },
-  links: {
-    padding: "0.5rem",
-  },
-};
+const StyledNavLinks = styled.nav`
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 0.5rem;
+
+  & > a {
+    padding: 0.5rem;
+  }
+`;
 
 export default NavLinks;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import { getAllCategories } from "../../services/productsService";
 
@@ -17,36 +18,36 @@ function NavBar() {
   }, []);
 
   return (
-    <header style={s.header}>
-      <Link to="/" style={s.brand}>
-        <img src={logo} alt="logo" style={s.logo} />
+    <StyledNavBar>
+      <Link to="/" className="brand">
+        <img src={logo} alt="logo" className="logo" />
         <h1>Punto de Apoyo</h1>
       </Link>
       <NavLinks categories={categories} />
       <CartWidget />
-    </header>
+    </StyledNavBar>
   );
 }
 
-const s = {
-  header: {
-    display: "flex",
-    flexFlow: "row wrap",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "1.5rem 3rem",
-    borderBottom: "solid 2px",
-  },
-  brand: {
-    display: "flex",
-    flexFlow: "row",
-    alignItems: "center",
-    gap: "1rem",
-  },
-  logo: {
-    width: 60,
-    height: 60,
-  },
-};
+const StyledNavBar = styled.header`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  border-bottom: solid 2px;
+
+  & .brand {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  & .logo {
+    width: 60;
+    height: 60;
+  }
+`;
 
 export default NavBar;

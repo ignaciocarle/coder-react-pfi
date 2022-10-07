@@ -1,47 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function Item({ product }) {
   const { title, price, image } = product;
 
   return (
-    <article style={s.article}>
-      <Link style={s.container} to={"/item/" + product.id}>
-        <img style={s.img} src={image} alt={title} />
-        <h3 style={s.title}>{title}</h3>
-        <h3 style={s.price}>$ {price}</h3>
+    <StyledItem>
+      <Link to={"/item/" + product.id}>
+        <img src={image} alt={title} />
+        <h3>{title}</h3>
+        <h3>$ {price}</h3>
       </Link>
-    </article>
+    </StyledItem>
   );
 }
 
-const s = {
-  article: {
-    width: "26%",
-    minHeight: "fit-content",
-  },
-  container: {
-    padding: "1.5rem",
-    display: "flex",
-    flexFlow: "column",
-    justifyContent: "start",
-    alignItems: "center",
-    rowGap: "1rem",
-    border: "solid 1px var(--primary-700)",
-    borderRadius: "1rem",
-  },
-  img: {
-    width: "220px",
-    height: "220px",
-    objectFit: "contain",
-  },
-  title: {
-    textAlign: "center",
-  },
-  price: {
-    marginTop: "auto",
-    textAlign: "center",
-  },
-};
+const StyledItem = styled.article`
+  width: 26%;
+
+  & > a {
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    align-items: center;
+    row-gap: 1rem;
+    border: solid 1px var(--brand-primary);
+    border-radius: 1rem;
+
+    & > img {
+      width: 220px;
+      height: 220px;
+      object-fit: contain;
+    }
+
+    & > h3 {
+      text-align: center;
+    }
+
+    & :last-child {
+      margin-top: auto;
+    }
+  }
+`;
 
 export default Item;

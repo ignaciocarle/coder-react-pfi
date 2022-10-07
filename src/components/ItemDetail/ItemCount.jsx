@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+
+import { Button } from "../UI/Button";
 
 function ItemCount({ stock, initial, onAdd }) {
   const [count, setCount] = useState(parseInt(initial));
@@ -18,16 +21,36 @@ function ItemCount({ stock, initial, onAdd }) {
 
   return (
     <>
-      <div>
-        <h1>{count}</h1>
+      <StyledItemCount>
         <div>
-          <button onClick={countSubs}>-</button>
-          <button onClick={countAdd}>+</button>
+          <Button as="button" onClick={countSubs}>
+            ◀
+          </Button>
+          <h1>{count}</h1>
+          <Button as="button" onClick={countAdd}>
+            ▶
+          </Button>
         </div>
-        <button onClick={() => onAdd(count)}>Comprar</button>
-      </div>
+        <Button as="button" onClick={() => onAdd(count)}>
+          Comprar
+        </Button>
+      </StyledItemCount>
     </>
   );
 }
+
+const StyledItemCount = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  row-gap: 0.5em;
+
+  & > div {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    column-gap: 0.5em;
+  }
+`;
 
 export default ItemCount;

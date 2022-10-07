@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
 
 import CartProvider from "./context/CartContext";
 
@@ -16,7 +17,7 @@ function App() {
       <BrowserRouter>
         <CartProvider>
           <NavBar />
-          <main style={styles.main}>
+          <main>
             <Routes>
               <Route
                 path="/"
@@ -37,15 +38,5 @@ function App() {
     </>
   );
 }
-
-const styles = {
-  main: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "start",
-    alignItems: "center",
-    padding: "1.5rem 3rem 0",
-  },
-};
 
 export default App;

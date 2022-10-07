@@ -1,28 +1,26 @@
 import React from "react";
+import styled from "styled-components";
 
 import Item from "./Item";
 
 function ItemList({ productList }) {
   return (
-    <section style={s.section}>
+    <StyledItemList>
       {productList.map((product) => (
         <Item product={product} key={product.id} />
       ))}
-    </section>
+    </StyledItemList>
   );
 }
 
-const s = {
-  section: {
-    marginBottom: "3rem",
-    padding: "1.5rem 10% 0",
-    width: "100%",
-    display: "flex",
-    flexFlow: "row wrap",
-    justifyContent: "center",
-    columnGap: "3rem",
-    rowGap: "3rem",
-  },
-};
+const StyledItemList = styled.section`
+  padding-top: 1.5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  column-gap: 3rem;
+  row-gap: 3rem;
+`;
 
 export default ItemList;

@@ -1,26 +1,22 @@
 :root {
-  --light-bg: #f6faff;
-  --primary-100: #ffffff;
+  --light-bg: #ffffff;
+  --primary-100: var(--light-bg);
   --primary-200: #f6faff;
   --primary-700: #003f9c;
   --success-200: #d6f5d6;
   --success-700: #40bf40;
   --warning-200: #ffe6e6;
   --warning-700: #ed5e5e;
+  --brand-primary: #007dc6;
+  --brand-highlight: #ff7900;
 }
 
 * {
   margin: 0;
-  box-sizing: inherit;
-}
-
-*::before,
-*::after {
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 HTML {
-  box-sizing: border-box;
   background: var(--light-bg);
 }
 
@@ -30,7 +26,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: var(--primary-700);
+  color: var(--brand-primary);
+}
+
+main {
+  padding: 1.5rem 10% 3rem;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 a {
@@ -39,6 +42,6 @@ a {
 }
 
 .active {
-  border: 2px solid var(--primary-700);
+  border: 2px solid var(--brand-primary);
   border-radius: 0.5em;
 }

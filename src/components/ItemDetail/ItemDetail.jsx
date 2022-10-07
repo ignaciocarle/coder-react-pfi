@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 import { CartContext } from "../../context/CartContext";
 
@@ -16,12 +17,12 @@ function ItemDetail({ product }) {
   };
 
   return (
-    <article style={s.article}>
-      <img style={s.img} src={image} alt={title} />
-      <div style={s.details}>
+    <StyledItemDetail>
+      <img src={image} alt={title} />
+      <div>
         <h1>{title}</h1>
         <h3>$ {price}</h3>
-        <p style={s.description}>{description}</p>
+        <p>{description}</p>
         {displayItemCount ? (
           <ItemCount stock="10" initial="1" onAdd={onAdd} />
         ) : (
@@ -30,32 +31,33 @@ function ItemDetail({ product }) {
           </Link>
         )}
       </div>
-    </article>
+    </StyledItemDetail>
   );
 }
-const s = {
-  article: {
-    padding: "1.5rem 10% 0",
-    width: "100%",
-    height: "fit-content",
-    display: "flex",
-    flexFlow: "row",
-    justifyContent: "center",
-    alignItems: "start",
-    columnGap: "3rem",
-  },
-  img: {
-    maxWidth: "450px",
-    maxHeight: "450px",
-    objectFit: "contain",
-  },
-  details: {
-    paddingTop: "1.5rem",
-    display: "flex",
-    flexFlow: "column",
-    justifyContent: "start",
-    rowGap: "1rem",
-  },
-};
+
+const StyledItemDetail = styled.article`
+  padding: 1.5rem 10% 0;
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: start;
+  column-gap: 3rem;
+
+  & > img {
+    max-width: 450px;
+    max-height: 450px;
+    object-fit: contain;
+  }
+
+  & > div {
+    padding-top: 1.5rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    row-gap: 1.5em;
+  }
+`;
 
 export default ItemDetail;
