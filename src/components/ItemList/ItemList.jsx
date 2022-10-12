@@ -18,7 +18,6 @@ const StyledItemList = styled.section`
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  align-items: stretch;
   column-gap: 3rem;
   row-gap: 3rem;
 `;

@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { CartContext } from "../../context/CartContext";
 
+import { Button } from "../UI/Button";
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ product }) {
@@ -26,9 +26,7 @@ function ItemDetail({ product }) {
         {displayItemCount ? (
           <ItemCount stock="10" initial="1" onAdd={onAdd} />
         ) : (
-          <Link to="/cart">
-            <button>Finalizar Compra</button>
-          </Link>
+          <Button to="/cart">Finalizar Compra</Button>
         )}
       </div>
     </StyledItemDetail>
@@ -57,6 +55,10 @@ const StyledItemDetail = styled.article`
     flex-flow: column;
     justify-content: start;
     row-gap: 1.5em;
+
+    & > a {
+      align-self: center;
+    }
   }
 `;
 

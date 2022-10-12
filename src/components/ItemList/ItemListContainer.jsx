@@ -6,15 +6,14 @@ import { getAllProducts } from "../../services/productsService";
 import ItemList from "./ItemList";
 
 function ItemListContainer() {
-  let { id } = useParams();
+  let { categoryId } = useParams();
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    getAllProducts(id).then((data) => {
+    getAllProducts(categoryId).then((data) => {
       setProductList(data);
-      console.log("products retrieved from productsService");
     });
-  }, [id]);
+  }, [categoryId]);
 
   return (
     <>

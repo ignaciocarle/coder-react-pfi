@@ -1,72 +1,67 @@
-/*
-const mockData = [
-  {
-    id: 1,
-    title: "Cuaderno de Comunicaciones Secundario",
-    description: "Cuadernos de comunicados de 56 páginas",
-    price: 130,
-    image: "",
-  },
-  {
-    id: 2,
-    title: "Cuaderno de Comunicaciones Primario",
-    description: "Cuadernos de comunicados de 48 páginas",
-    price: 118,
-    image: "",
-  },
-  {
-    id: 3,
-    title: "Cuaderno de Comunicaciones Inicial",
-    description: "Cuadernos de comunicados de 36 páginas",
-    price: 96,
-    image: "",
-  },
-  {
-    id: 4,
-    title: "Cuaderno de Comunicaciones Inicial",
-    description: "Cuadernos de comunicados de 36 páginas",
-    price: 96,
-    image: "",
-  },
-  {
-    id: 5,
-    title: "Cuaderno de Comunicaciones Inicial",
-    description: "Cuadernos de comunicados de 36 páginas",
-    price: 96,
-    image: "",
-  },
-];
+import { db } from "../firebase/firebase";
+import {
+  doc,
+  collection,
+  query,
+  where,
+  getDoc,
+  getDocs,
+} from "firebase/firestore";
 
-export const getAllProducts = () => {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res(mockData);
-    }, 2000);
-  });
-};
-
-export const getItem = (id) => {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res(mockData.find((product) => product.id === id));
-    }, 2000);
-  });
-};
-*/
-
-const PATH = "https://fakestoreapi.com";
+const productsCollection = collection(db, "products");
+const categoriesCollection = collection(db, "categories");
 
 export const getAllProducts = (category) => {
-  const URL = PATH + `/products${category ? "/category/" + category : ""}`;
-  return fetch(URL).then((res) => res.json());
+  const productsQuery = !category
+    ? productsCollection
+    : query(productsCollection, where("category", "==", category));
+
+  return new Promise((res) => {
+    getDocs(productsQuery)
+      .then((data) => {
+        const products = data.docs.map((product) => {
+          return {
+            ...product.data(),
+            id: product.id,
+          };
+        });
+        res(products);
+        console.log("Productos obtenidos desde productsService");
+      })
+      .catch(() => {
+        console.log("No se pudieron obtener los productos");
+      });
+  });
 };
 
 export const getItem = (id) => {
-  const URL = PATH + `/products/${id}`;
-  return fetch(URL).then((res) => res.json());
+  const itemQuery = doc(productsCollection, id);
+
+  return new Promise((res) => {
+    getDoc(itemQuery)
+      .then((item) => {
+        res({ ...item.data(), id: item.id });
+      })
+      .catch(() => {
+        console.log("No se pudieron obtener los productos");
+      });
+  });
 };
 
 export const getAllCategories = () => {
-  const URL = PATH + `/products/categories`;
-  return fetch(URL).then((res) => res.json());
+  return new Promise((res) => {
+    getDocs(categoriesCollection)
+      .then((data) => {
+        const categories = data.docs.map((category) => {
+          return {
+            ...category.data(),
+            id: category.id,
+          };
+        });
+        res(categories);
+      })
+      .catch(() => {
+        console.log("No se pudieron obtener las categorías");
+      });
+  });
 };

@@ -12,7 +12,7 @@ function ItemDetailContainer() {
   useEffect(() => {
     getItem(id).then((data) => {
       setProductInfo(data);
-      console.log(`"${data.title}" retrieved from productsService`);
+      console.log(`"${data.title}" obtenido desde productsService`);
     });
   }, [id]);
 

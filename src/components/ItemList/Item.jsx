@@ -17,7 +17,7 @@ function Item({ product }) {
 }
 
 const StyledItem = styled.article`
-  width: 26%;
+  max-width: 350px;
 
   & > a {
     height: 100%;
@@ -31,7 +31,7 @@ const StyledItem = styled.article`
     border-radius: 1rem;
 
     & > img {
-      width: 220px;
+      max-width: 220px;
       height: 220px;
       object-fit: contain;
     }

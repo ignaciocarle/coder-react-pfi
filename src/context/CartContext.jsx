@@ -10,6 +10,7 @@ function CartProvider({ children }) {
   const cartTotalAmount = cart.reduce((acc, item) => acc + item.price, 0);
 
   useEffect(() => {
+    console.log("%cCarrito actualizado:", "color: red");
     console.dir(cart);
   }, [cart]);
 
@@ -33,7 +34,6 @@ function CartProvider({ children }) {
 
   const addItem = (item, qty) => {
     setCart(isInCart(item.id) ? updateItem(item, qty) : createItem(item, qty));
-    console.log(`Added ${qty} units of "${item.title}" to Cart.`);
   };
 
   const removeItem = (itemId) => {

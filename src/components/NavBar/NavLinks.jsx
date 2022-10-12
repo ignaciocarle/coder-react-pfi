@@ -6,9 +6,9 @@ function NavLinks({ categories }) {
   return (
     <>
       <StyledNavLinks>
-        {categories.map((category, index) => (
-          <NavLink to={"category/" + category} key={index}>
-            <p>{category}</p>
+        {categories.map((category) => (
+          <NavLink to={"category/" + category.name} key={category.id}>
+            <p>{category.name}</p>
           </NavLink>
         ))}
       </StyledNavLinks>
