@@ -1,13 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 
 import { CartContext } from "../../context/CartContext";
+import { newOrder } from "../../services/ordersService";
 
 import { Button } from "../UI/Button";
 
-function CartDetail() {
+function CartDetail({ setOrderId }) {
   const { cart, removeItem, clearCart, cartTotalAmount } =
     useContext(CartContext);
+
+  const handleNewOrder = async () => {
+    const id = await newOrder(cart, cartTotalAmount);
+    setOrderId(id);
+    clearCart();
+  };
 
   return (
     <>
@@ -42,13 +49,17 @@ function CartDetail() {
         </tbody>
       </StyledCartDetail>
 
-      <StyledDiv>
+      <StyledAmount>
         <h3>Total:</h3>
         <h3>$ {cartTotalAmount}</h3>
-      </StyledDiv>
+      </StyledAmount>
 
       <Button as="button" onClick={clearCart}>
         Limpiar el Carrito
+      </Button>
+
+      <Button as="button" onClick={handleNewOrder}>
+        Finalizar Compra
       </Button>
     </>
   );
@@ -86,7 +97,7 @@ const StyledCartDetail = styled.table`
   }
 `;
 
-const StyledDiv = styled.div`
+const StyledAmount = styled.div`
   display: flex;
   align-self: end;
   column-gap: 3em;

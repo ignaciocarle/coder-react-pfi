@@ -7,7 +7,10 @@ function CartProvider({ children }) {
 
   const itemsInCart = cart.reduce((acc, item) => acc + item.qty, 0);
 
-  const cartTotalAmount = cart.reduce((acc, item) => acc + item.price, 0);
+  const cartTotalAmount = cart.reduce(
+    (acc, item) => acc + item.price * item.qty,
+    0
+  );
 
   useEffect(() => {
     console.log("%cCarrito actualizado:", "color: red");

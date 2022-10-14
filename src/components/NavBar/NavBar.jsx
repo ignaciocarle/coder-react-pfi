@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { getAllCategories } from "../../services/productsService";
+import { getCategories } from "../../services/productsService";
 
 import logo from "../../assets/pda-logo-small.png";
 import NavLinks from "./NavLinks";
@@ -12,7 +12,7 @@ function NavBar() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    getAllCategories().then((data) => {
+    getCategories().then((data) => {
       setCategories(data);
     });
   }, []);

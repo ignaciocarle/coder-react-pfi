@@ -7,7 +7,7 @@ import { Button } from "../UI/Button";
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ product }) {
-  const { title, description, price, image } = product;
+  const { title, description, price, image, stock } = product;
   const [displayItemCount, setDisplayItemCount] = useState(true);
   const { addItem } = useContext(CartContext);
 
@@ -24,7 +24,7 @@ function ItemDetail({ product }) {
         <h3>$ {price}</h3>
         <p>{description}</p>
         {displayItemCount ? (
-          <ItemCount stock="10" initial="1" onAdd={onAdd} />
+          <ItemCount stock={stock} initial="1" onAdd={onAdd} />
         ) : (
           <Button to="/cart">Finalizar Compra</Button>
         )}

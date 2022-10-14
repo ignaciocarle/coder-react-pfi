@@ -1,4 +1,3 @@
-import { db } from "../firebase/firebase";
 import {
   doc,
   collection,
@@ -7,61 +6,54 @@ import {
   getDoc,
   getDocs,
 } from "firebase/firestore";
+import { db } from "../firebase/firebase";
 
-const productsCollection = collection(db, "products");
-const categoriesCollection = collection(db, "categories");
+const productsRef = collection(db, "products");
+const categoriesRef = collection(db, "categories");
 
-export const getAllProducts = (category) => {
+export const getAllProducts = async (category) => {
   const productsQuery = !category
-    ? productsCollection
-    : query(productsCollection, where("category", "==", category));
+    ? productsRef
+    : query(productsRef, where("category", "==", category));
+
+  const response = await getDocs(productsQuery);
+  const products = response.docs.map((product) => {
+    return {
+      ...product.data(),
+      id: product.id,
+    };
+  });
 
   return new Promise((res) => {
-    getDocs(productsQuery)
-      .then((data) => {
-        const products = data.docs.map((product) => {
-          return {
-            ...product.data(),
-            id: product.id,
-          };
-        });
-        res(products);
-        console.log("Productos obtenidos desde productsService");
-      })
-      .catch(() => {
-        console.log("No se pudieron obtener los productos");
-      });
+    res(products);
   });
 };
 
-export const getItem = (id) => {
-  const itemQuery = doc(productsCollection, id);
+export const getItem = async (id) => {
+  const itemQuery = doc(productsRef, id);
+
+  const response = await getDoc(itemQuery);
+  const product = { ...response.data(), id: response.id };
 
   return new Promise((res) => {
-    getDoc(itemQuery)
-      .then((item) => {
-        res({ ...item.data(), id: item.id });
-      })
-      .catch(() => {
-        console.log("No se pudieron obtener los productos");
-      });
+    res(product);
   });
 };
 
-export const getAllCategories = () => {
-  return new Promise((res) => {
-    getDocs(categoriesCollection)
-      .then((data) => {
-        const categories = data.docs.map((category) => {
-          return {
-            ...category.data(),
-            id: category.id,
-          };
-        });
-        res(categories);
-      })
-      .catch(() => {
-        console.log("No se pudieron obtener las categorías");
-      });
+export const getCategories = async () => {
+  const response = await getDocs(categoriesRef);
+  const categories = response.docs.map((category) => {
+    return {
+      ...category.data(),
+      id: category.id,
+    };
   });
+
+  return new Promise((res) => {
+    res(categories);
+  });
+};
+
+export const checkStock = async (cart) => {
+  const itemsIdList = cart.map((item) => item.id);
 };
