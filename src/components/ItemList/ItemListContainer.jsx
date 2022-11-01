@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 
 import { getAllProducts } from "../../services/productsService";
 
+import { DotSpinner } from "@uiball/loaders";
+import { MainContainer } from "../UI/Containers";
+
 import ItemList from "./ItemList";
 
 function ItemListContainer() {
@@ -10,18 +13,21 @@ function ItemListContainer() {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    getAllProducts(categoryId).then((data) => {
+    getAllProducts(categoryId?.toLowerCase()).then((data) => {
       setProductList(data);
     });
   }, [categoryId]);
 
   return (
     <>
-      {productList.length !== 0 ? (
-        <ItemList productList={productList} />
-      ) : (
-        <p style={{ marginTop: "1.5rem" }}>Loading...</p>
-      )}
+      <MainContainer>
+        {categoryId && <h1>{categoryId}</h1>}
+        {productList.length !== 0 ? (
+          <ItemList productList={productList} />
+        ) : (
+          <DotSpinner size={70} speed={0.5} color="var(--brand-primary)" />
+        )}
+      </MainContainer>
     </>
   );
 }

@@ -17,9 +17,8 @@ function Item({ product }) {
 }
 
 const StyledItem = styled.article`
-  max-width: 350px;
-
   & > a {
+    max-width: 350px;
     height: 100%;
     padding: 1.5rem;
     display: flex;

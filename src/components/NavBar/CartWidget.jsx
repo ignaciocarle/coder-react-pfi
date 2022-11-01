@@ -12,7 +12,7 @@ function CartWidget() {
   return (
     <>
       <StyledCartWidget to="/cart">
-        {itemsInCart !== 0 && <h4>{itemsInCart}</h4>}
+        {itemsInCart() !== 0 && <h4>{itemsInCart()}</h4>}
         <ShoppingCartOutlinedIcon fontSize="large" />
       </StyledCartWidget>
     </>

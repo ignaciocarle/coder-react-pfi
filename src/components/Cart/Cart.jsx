@@ -1,29 +1,23 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { CartContext } from "../../context/CartContext";
 
+import { breakpoints } from "../UI/breakpoints";
+import { MainContainer } from "../UI/Containers";
 import { Button } from "../UI/Button";
+
 import CartDetail from "./CartDetail";
 
 function Cart() {
   const { cart } = useContext(CartContext);
-  const [orderId, setOrderId] = useState("");
 
-  if (orderId) {
-    return (
-      <StyledCart as="section">
-        <h2>Gracias por tu compra</h2>
-        <p>El código de tu orden es {orderId}</p>
-        <Button to="/">Volver a la Home</Button>
-      </StyledCart>
-    );
-  } else {
-    return (
-      <StyledCart as="section">
-        <h1>Carrito</h1>
+  return (
+    <MainContainer>
+      <h1>Carrito</h1>
+      <StyledCart>
         {cart.length !== 0 ? (
-          <CartDetail setOrderId={setOrderId} />
+          <CartDetail />
         ) : (
           <>
             <p>No hay productos en el carrito</p>
@@ -31,18 +25,21 @@ function Cart() {
           </>
         )}
       </StyledCart>
-    );
-  }
+    </MainContainer>
+  );
 }
 
 const StyledCart = styled.section`
   width: 100%;
-  padding: 1.5rem 15%;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   row-gap: 2rem;
+
+  @media ${breakpoints.lg} {
+    padding: 0 10%;
+  }
 `;
 
 export default Cart;

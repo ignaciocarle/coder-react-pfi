@@ -3,27 +3,29 @@ import React, { createContext, useState, useEffect } from "react";
 export const CartContext = createContext();
 
 function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
-
-  const itemsInCart = cart.reduce((acc, item) => acc + item.qty, 0);
-
-  const cartTotalAmount = cart.reduce(
-    (acc, item) => acc + item.price * item.qty,
-    0
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) ?? []
   );
 
   useEffect(() => {
-    console.log("%cCarrito actualizado:", "color: red");
-    console.dir(cart);
+    localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
   //FUNCIONES DE MANEJO DEL CARRITO
+
+  const itemsInCart = () => {
+    return cart.reduce((acc, item) => acc + item.qty, 0);
+  };
+
+  const cartTotalAmount = () => {
+    return cart.reduce((acc, item) => acc + item.price * item.qty, 0);
+  };
 
   const isInCart = (id) => {
     return !!cart.find((item) => item.id === id);
   };
 
-  const createItem = (item, qty) => {
+  const addNewItem = (item, qty) => {
     return [...cart, { ...item, qty: qty }];
   };
 
@@ -36,7 +38,7 @@ function CartProvider({ children }) {
   };
 
   const addItem = (item, qty) => {
-    setCart(isInCart(item.id) ? updateItem(item, qty) : createItem(item, qty));
+    setCart(isInCart(item.id) ? updateItem(item, qty) : addNewItem(item, qty));
   };
 
   const removeItem = (itemId) => {

@@ -3,6 +3,9 @@ import { useParams } from "react-router-dom";
 
 import { getItem } from "../../services/productsService";
 
+import { DotSpinner } from "@uiball/loaders";
+import { MainContainer } from "../UI/Containers";
+
 import ItemDetail from "./ItemDetail";
 
 function ItemDetailContainer() {
@@ -16,13 +19,19 @@ function ItemDetailContainer() {
   }, [id]);
 
   return (
-    <>
-      {Object.keys(productInfo).length !== 0 ? (
-        <ItemDetail product={productInfo} />
+    <MainContainer>
+      {Object.keys(productInfo).length === 0 ? (
+        <div style={{ marginTop: "4.5rem" }}>
+          <DotSpinner size={70} speed={0.5} color="var(--brand-primary)" />
+        </div>
+      ) : productInfo.notFound ? (
+        <div style={{ marginTop: "4.5rem" }}>
+          <h1>No se encontró el producto seleccionado</h1>
+        </div>
       ) : (
-        <p>Loading...</p>
+        <ItemDetail product={productInfo} />
       )}
-    </>
+    </MainContainer>
   );
 }
 

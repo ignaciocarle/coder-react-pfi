@@ -3,7 +3,9 @@ import styled from "styled-components";
 
 import { CartContext } from "../../context/CartContext";
 
-import { Button } from "../UI/Button";
+import { breakpoints } from "../UI/breakpoints";
+import { ButtonContainer, Button, ButtonOutlined } from "../UI/Button";
+
 import ItemCount from "./ItemCount";
 
 function ItemDetail({ product }) {
@@ -12,52 +14,67 @@ function ItemDetail({ product }) {
   const { addItem } = useContext(CartContext);
 
   const onAdd = (count) => {
-    setDisplayItemCount(false);
     addItem(product, count);
+    setDisplayItemCount(false);
   };
 
   return (
     <StyledItemDetail>
       <img src={image} alt={title} />
-      <div>
-        <h1>{title}</h1>
+      <div className="productInfo">
+        <h2>{title}</h2>
         <h3>$ {price}</h3>
         <p>{description}</p>
         {displayItemCount ? (
           <ItemCount stock={stock} initial="1" onAdd={onAdd} />
         ) : (
-          <Button to="/cart">Finalizar Compra</Button>
+          <>
+            <ButtonContainer>
+              <ButtonOutlined to="/">Seguir Comprando</ButtonOutlined>
+              <Button to="/cart">Ir al Carrito</Button>
+            </ButtonContainer>
+          </>
         )}
       </div>
     </StyledItemDetail>
   );
 }
 
-const StyledItemDetail = styled.article`
-  padding: 1.5rem 10% 0;
-  width: 100%;
-  height: fit-content;
+const StyledItemDetail = styled.section`
+  margin-top: 3rem;
   display: flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: start;
-  column-gap: 3rem;
+  flex-flow: column;
+  justify-content: stretch;
+  align-items: center;
+  row-gap: 3rem;
 
   & > img {
-    max-width: 450px;
-    max-height: 450px;
+    max-width: 300px;
+    max-height: 300px;
     object-fit: contain;
   }
 
-  & > div {
-    padding-top: 1.5rem;
+  & > div.productInfo {
+    width: 100%;
     display: flex;
     flex-flow: column;
     justify-content: start;
     row-gap: 1.5em;
+  }
 
-    & > a {
-      align-self: center;
+  @media ${breakpoints.lg} {
+    flex-flow: row;
+    justify-content: center;
+    align-items: start;
+    column-gap: 4.5rem;
+
+    & > img {
+      max-width: 450px;
+      max-height: 450px;
+    }
+
+    & > div.productInfo {
+      max-width: 50%;
     }
   }
 `;
